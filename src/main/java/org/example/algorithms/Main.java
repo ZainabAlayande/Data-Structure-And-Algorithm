@@ -1,4 +1,6 @@
-package org.example;
+package org.example.algorithms;
+
+import org.example.algorithms.InterSperse;
 
 public class Main {
     public static void main(String[] args) {

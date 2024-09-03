@@ -1,7 +1,7 @@
 package org.example.graph;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class GraphWithOOPImpl {
 
@@ -9,34 +9,36 @@ public class GraphWithOOPImpl {
         Person mary = new Person("Mary");
         Person peter = new Person("Peter");
 
-        mary.addFriend("Peter");
-        peter.addFriend("Mary");
+        mary.addFriend(peter);
+        peter.addFriend(mary);
 
-        System.out.println(Arrays.toString(mary.getFriend()));
-        System.out.println(Arrays.toString(peter.getFriend()));
-
-
+        System.out.println(mary.getName() + "'s friends: " + mary.getFriendNames());
+        System.out.println(peter.getName() + "'s friends: " + peter.getFriendNames());
     }
 
     static class Person {
         private String name;
-        private int length;
-        private String[] friends;
+        private List<Person> friends;
 
         public Person(String name) {
             this.name = name;
+            this.friends = new ArrayList<>();
         }
 
-        public void addFriend(String friend) {
-            friends = new String[length + 1];
-            friends[length] = friend;
-            length++;
+        public void addFriend(Person friend) {
+            friends.add(friend);
         }
 
-        public String[] getFriend() {
-            return friends;
+        public String getName() {
+            return name;
         }
 
-
+        public List<String> getFriendNames() {
+            List<String> friendNames = new ArrayList<>();
+            for (Person friend : friends) {
+                friendNames.add(friend.getName());
+            }
+            return friendNames;
+        }
     }
 }
